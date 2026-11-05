@@ -1,0 +1,6 @@
+{
+  "name": "BrewFlow",
+  "description": "Unified specialty coffee storefront and operational station management system with automated cross-selling, KDS station routing, and POS order booking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
