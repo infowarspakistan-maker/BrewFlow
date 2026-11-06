@@ -7,6 +7,7 @@ import {
   ChevronLeft 
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { ProgressiveImage } from './ProgressiveImage';
 
 export interface HeroProductSlide {
   id: string;
@@ -298,11 +299,11 @@ export const StorefrontHero: React.FC = () => {
                 }}
                 className="relative w-full h-64 sm:h-72 md:h-80 rounded-2xl overflow-hidden bg-black/30 backdrop-blur-md shadow-2xl group cursor-pointer border border-white/5"
               >
-                <img
+                <ProgressiveImage
                   src={activeProduct.image}
                   alt={activeProduct.name}
-                  decoding="async"
-                  className="w-full h-full object-cover object-center filter contrast-105 group-hover:scale-105 transition-transform duration-700 transform-gpu"
+                  containerClassName="w-full h-full"
+                  imageClassName="object-cover object-center filter contrast-105 group-hover:scale-105 transition-transform duration-700 transform-gpu"
                 />
 
                 {/* Ambient dark gradient vignette */}

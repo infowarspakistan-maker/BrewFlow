@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { MenuItem, ProductCategory } from '../types';
+import { ProgressiveImage } from './ProgressiveImage';
+
 
 interface SectionProps {
   id: string;
@@ -174,10 +176,11 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
           {/* Right Column (60% width): Full Height Product Photo (No top, bottom, or left padding) */}
           {activeItem && (
             <div className="lg:col-span-6 relative w-full min-h-[300px] sm:min-h-[360px] lg:h-full p-0 overflow-hidden bg-black/40 group">
-              <img
+              <ProgressiveImage
                 src={activeItem.image}
                 alt={activeItem.name}
-                className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                containerClassName="absolute inset-0 w-full h-full"
+                imageClassName="object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
 
               {/* Dark gradient vignette overlay */}
@@ -324,13 +327,11 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
               >
                 {/* Full-bleed Product Image */}
                 <div className="absolute inset-0 w-full h-full">
-                  <img
+                  <ProgressiveImage
                     src={item.image}
                     alt={item.name}
-                    loading="lazy"
-                    decoding="async"
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover object-center filter contrast-105 group-hover:scale-105 transition-transform duration-700 transform-gpu"
+                    containerClassName="absolute inset-0 w-full h-full"
+                    imageClassName="object-cover object-center filter contrast-105 group-hover:scale-105 transition-transform duration-700 transform-gpu"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/40 pointer-events-none" />
                 </div>
