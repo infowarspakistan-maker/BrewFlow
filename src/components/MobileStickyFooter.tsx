@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { 
   Coffee, 
   Snowflake, 
   Croissant, 
   Sparkles, 
-  Search, 
-  ShoppingBag,
-  User
+  ShoppingBag
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
@@ -14,45 +12,10 @@ export const MobileStickyFooter: React.FC = () => {
   const { 
     cartItemCount, 
     setIsCartOpen, 
-    playChime,
-    setActiveView,
-    isAdminLoggedIn,
-    setIsAdminLoginModalOpen 
+    playChime
   } = useApp();
 
-  const [isVisible, setIsVisible] = useState(true);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Auto-hide when not interacted with for 5 seconds
-  const resetTimer = () => {
-    setIsVisible(true);
-    if (timerRef.current) clearTimeout(timerRef.current);
-    timerRef.current = setTimeout(() => {
-      setIsVisible(false);
-    }, 5000);
-  };
-
-  useEffect(() => {
-    // Start initial 5-second countdown
-    timerRef.current = setTimeout(() => {
-      setIsVisible(false);
-    }, 5000);
-
-    const events = ['scroll', 'touchstart', 'touchmove', 'touchend', 'click', 'mousemove'];
-    events.forEach(event => {
-      window.addEventListener(event, resetTimer, { passive: true });
-    });
-
-    return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-      events.forEach(event => {
-        window.removeEventListener(event, resetTimer);
-      });
-    };
-  }, []);
-
   const scrollToAnchor = (id: string) => {
-    resetTimer();
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -61,92 +24,67 @@ export const MobileStickyFooter: React.FC = () => {
   };
 
   return (
-    <div 
-      className={`fixed bottom-3 left-3 right-3 z-50 md:hidden transition-all duration-500 ease-out transform-gpu ${
-        isVisible 
-          ? 'translate-y-0 opacity-100 scale-100 pointer-events-auto' 
-          : 'translate-y-16 opacity-0 scale-95 pointer-events-none'
-      }`}
-    >
+    <div className="fixed bottom-3 left-3 right-3 z-50 md:hidden">
       <nav 
-        aria-label="Mobile Navigation"
-        className="bg-[#140c08]/90 backdrop-blur-xl border border-white/15 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.9)] px-2.5 py-2 flex items-center justify-between gap-1 select-none"
+        aria-label="Mobile Navigation Footer"
+        className="bg-black/50 backdrop-blur-md border border-white/25 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.85)] px-3 py-2.5 flex items-center justify-around gap-2 select-none"
       >
-        {/* Featured Deals button */}
+        {/* Deals */}
         <button
           onClick={() => scrollToAnchor('hero-section')}
-          className="flex flex-col items-center justify-center p-1.5 rounded-xl hover:bg-white/10 text-[#d8c5b6] active:scale-95 transition-transform"
-          aria-label="Featured deals"
+          className="flex flex-col items-center justify-center p-1.5 rounded-xl hover:bg-white/10 text-[#faede1] active:scale-95 transition-transform"
+          aria-label="Deals"
         >
-          <Sparkles className="w-4 h-4 text-[#d59a63]" />
-          <span className="text-[9px] font-medium tracking-tight mt-0.5">Deals</span>
+          <Sparkles className="w-4 h-4 text-[#d59a63] fill-[#d59a63]/30 stroke-[2]" />
+          <span className="text-[10px] font-medium tracking-tight mt-1">Deals</span>
         </button>
 
-        {/* Espresso button */}
+        {/* Espresso */}
         <button
           onClick={() => scrollToAnchor('espresso-section')}
-          className="flex flex-col items-center justify-center p-1.5 rounded-xl hover:bg-white/10 text-[#d8c5b6] active:scale-95 transition-transform"
-          aria-label="Espresso Classics"
+          className="flex flex-col items-center justify-center p-1.5 rounded-xl hover:bg-white/10 text-[#faede1] active:scale-95 transition-transform"
+          aria-label="Espresso"
         >
-          <Coffee className="w-4 h-4 text-[#d59a63]" />
-          <span className="text-[9px] font-medium tracking-tight mt-0.5">Espresso</span>
+          <Coffee className="w-4 h-4 text-[#d59a63] fill-[#d59a63]/30 stroke-[2]" />
+          <span className="text-[10px] font-medium tracking-tight mt-1">Espresso</span>
         </button>
 
-        {/* Chilled button */}
+        {/* Chilled */}
         <button
           onClick={() => scrollToAnchor('chilled-section')}
-          className="flex flex-col items-center justify-center p-1.5 rounded-xl hover:bg-white/10 text-[#d8c5b6] active:scale-95 transition-transform"
-          aria-label="Chilled drinks"
+          className="flex flex-col items-center justify-center p-1.5 rounded-xl hover:bg-white/10 text-[#faede1] active:scale-95 transition-transform"
+          aria-label="Chilled"
         >
-          <Snowflake className="w-4 h-4 text-[#7ec2ed]" />
-          <span className="text-[9px] font-medium tracking-tight mt-0.5">Chilled</span>
+          <Snowflake className="w-4 h-4 text-[#7ec2ed] fill-[#7ec2ed]/30 stroke-[2]" />
+          <span className="text-[10px] font-medium tracking-tight mt-1">Chilled</span>
         </button>
 
-        {/* Bakery button */}
+        {/* Bakery */}
         <button
           onClick={() => scrollToAnchor('bakery-section')}
-          className="flex flex-col items-center justify-center p-1.5 rounded-xl hover:bg-white/10 text-[#d8c5b6] active:scale-95 transition-transform"
-          aria-label="Bakery & sweets"
+          className="flex flex-col items-center justify-center p-1.5 rounded-xl hover:bg-white/10 text-[#faede1] active:scale-95 transition-transform"
+          aria-label="Bakery"
         >
-          <Croissant className="w-4 h-4 text-[#e5b686]" />
-          <span className="text-[9px] font-medium tracking-tight mt-0.5">Bakery</span>
+          <Croissant className="w-4 h-4 text-[#e5b686] fill-[#e5b686]/30 stroke-[2]" />
+          <span className="text-[10px] font-medium tracking-tight mt-1">Bakery</span>
         </button>
 
-        {/* Cart / Order Bag button with live badge */}
+        {/* Bag */}
         <button
           onClick={() => {
-            resetTimer();
             setIsCartOpen(true);
             playChime('click');
           }}
-          className="relative px-3.5 py-1.5 rounded-xl bg-[#d59a63] text-[#120b08] font-bold shadow-[0_0_15px_rgba(213,154,99,0.5)] active:scale-95 transition-transform flex items-center gap-1"
-          aria-label="Open Cart Bag"
+          className="relative px-3.5 py-1.5 rounded-xl bg-[#d59a63] text-[#120b08] font-bold shadow-[0_0_20px_rgba(213,154,99,0.7)] active:scale-95 transition-transform flex items-center gap-1.5"
+          aria-label="Bag"
         >
-          <ShoppingBag className="w-4 h-4" />
+          <ShoppingBag className="w-4 h-4 fill-[#120b08]/20 stroke-[2.2]" />
           <span className="text-[10px] uppercase font-bold tracking-wider">Bag</span>
           {cartItemCount > 0 && (
             <span className="w-4 h-4 rounded-full bg-[#120b08] text-[#ffffff] font-mono text-[9px] font-bold flex items-center justify-center ml-0.5">
               {cartItemCount}
             </span>
           )}
-        </button>
-
-        {/* Account / Staff button */}
-        <button
-          onClick={() => {
-            resetTimer();
-            if (isAdminLoggedIn) {
-              setActiveView('operations_hub');
-            } else {
-              setIsAdminLoginModalOpen(true);
-            }
-            playChime('click');
-          }}
-          className="flex flex-col items-center justify-center p-1.5 rounded-xl hover:bg-white/10 text-[#baa293] active:scale-95 transition-transform"
-          aria-label="Account profile"
-        >
-          <User className="w-4 h-4 text-[#baa293]" />
-          <span className="text-[9px] font-medium tracking-tight mt-0.5">Account</span>
         </button>
       </nav>
     </div>

@@ -228,27 +228,27 @@ export const StorefrontHero: React.FC = () => {
       `}</style>
 
       {/* Main Hero Showcase */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-12 items-center my-auto">
         
         {/* Left Column: Typography & Dynamic Kicker */}
-        <div className="lg:col-span-7 space-y-6 sm:space-y-7 z-10">
+        <div className="md:col-span-1 lg:col-span-7 space-y-4 sm:space-y-6 z-10 text-center md:text-left">
           
           {/* Dynamic Kicker matching active slide product */}
-          <div className="flex items-center gap-3 text-xs tracking-widest text-[#cfb7a5] uppercase font-light">
-            <span className="w-8 h-[1px] bg-[#d59a63]" />
+          <div className="flex items-center justify-center md:justify-start gap-3 text-[10px] sm:text-xs tracking-widest text-[#cfb7a5] uppercase font-light">
+            <span className="hidden md:block w-8 h-[1px] bg-[#d59a63]" />
             <span className="text-[#d59a63] font-semibold tracking-[0.2em]">
               {activeProduct.kicker}
             </span>
             <span className="hidden sm:inline text-[#8e7667]">·</span>
-            <span className="hidden sm:inline text-[#baa293] font-mono text-[11px]">
+            <span className="hidden sm:inline text-[#baa293] font-mono text-[10px] sm:text-[11px]">
               {activeProduct.tag}
             </span>
           </div>
 
           {/* Grand Headline with smooth transition */}
-          <div className="space-y-1 transition-all duration-300">
-            <h1 className="font-sans text-5xl sm:text-6xl md:text-7xl lg:text-[76px] font-bold text-[#ffffff] leading-[1.04] tracking-tight">
-              Good<br />
+          <div className="space-y-0.5 sm:space-y-1 transition-all duration-300">
+            <h1 className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-bold text-[#ffffff] leading-[1.04] tracking-tight">
+              Good<br className="hidden sm:block" />
               Coffee<br />
               <span className="text-[#d59a63] font-serif italic font-normal">
                 {activeProduct.headlineWord}
@@ -257,26 +257,25 @@ export const StorefrontHero: React.FC = () => {
           </div>
 
           {/* Subtext description & specific notes */}
-          <p className="text-sm sm:text-base text-[#baa293] max-w-md sm:max-w-lg leading-relaxed font-light">
-            {activeProduct.notes} Handcrafted in our artisanal roastery and bakery with connected kitchen synchronization.
+          <p className="hidden md:block text-xs sm:text-sm md:text-base text-[#baa293] max-w-sm sm:max-w-md md:max-w-lg mx-auto md:mx-0 leading-relaxed font-light">
+            {activeProduct.notes} Handcrafted in our artisanal roastery and bakery.
           </p>
 
           {/* Action Button */}
-          <div className="pt-2 flex items-center gap-4 sm:gap-5">
-            {/* White pill button: Shop Category */}
+          <div className="hidden md:flex pt-2 items-center justify-center md:justify-start gap-4 sm:gap-5">
             <button
               onClick={() => scrollToSection(activeProduct.sectionId)}
-              className="px-7 py-3.5 rounded-full bg-[#ffffff] hover:bg-[#f2e6dc] text-[#120b08] font-medium text-xs sm:text-sm tracking-wider uppercase transition-all shadow-xl active:scale-95 flex items-center gap-2.5 group"
+              className="px-6 py-3 rounded-full bg-[#ffffff] hover:bg-[#f2e6dc] text-[#120b08] font-medium text-xs sm:text-sm tracking-wider uppercase transition-all shadow-xl active:scale-95 flex items-center gap-2.5 group"
             >
               <span>Explore Menu</span>
-              <ArrowRight className="w-4 h-4 text-[#120b08] group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#120b08] group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
         </div>
 
-        {/* Right Column: Hero Product Visual with Easy-Ease Bounce Left Transition */}
-        <div className="lg:col-span-5 relative flex items-center justify-center lg:justify-end">
+        {/* Right Column: Hero Product Visual */}
+        <div className="md:col-span-1 lg:col-span-5 relative flex items-center justify-center">
           
           <div className="relative w-full max-w-[480px] aspect-[4/3] sm:aspect-square flex items-center justify-center overflow-hidden">
             
@@ -297,7 +296,7 @@ export const StorefrontHero: React.FC = () => {
                   if (realMenuItem) setSelectedProductForDetail(realMenuItem);
                   playChime('click');
                 }}
-                className="relative w-full h-64 sm:h-72 md:h-80 rounded-2xl overflow-hidden bg-black/30 backdrop-blur-md shadow-2xl group cursor-pointer border border-white/5"
+                className="relative w-full h-64 sm:h-72 md:h-80 rounded-2xl overflow-hidden bg-transparent backdrop-blur-sm shadow-2xl group cursor-pointer border border-white/5"
               >
                 <ProgressiveImage
                   src={activeProduct.image}
@@ -311,12 +310,12 @@ export const StorefrontHero: React.FC = () => {
 
                 {/* Floating Portion & Price Pill in image */}
                 <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs pointer-events-none">
-                  <div className="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-[11px] font-mono text-[#faede1] flex items-center gap-2">
+                  <div className="px-3 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/5 text-[11px] font-mono text-[#faede1] flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#d59a63] animate-ping" />
                     <span>{activeProduct.sizeLabels}</span>
                   </div>
 
-                  <span className="px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-[10px] text-[#baa293]">
+                  <span className="px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/5 text-[10px] text-[#baa293]">
                     {activeProduct.calories}
                   </span>
                 </div>
@@ -398,7 +397,7 @@ export const StorefrontHero: React.FC = () => {
                 className={`flex items-center gap-2.5 p-1.5 pr-3 rounded-xl transition-all cursor-pointer shrink-0 border ${
                   isActive 
                     ? 'bg-white/10 border-[#d59a63] shadow-lg scale-102' 
-                    : 'bg-black/30 border-transparent hover:bg-white/5 opacity-70 hover:opacity-100'
+                    : 'bg-transparent border-transparent hover:bg-white/5 opacity-70 hover:opacity-100'
                 }`}
               >
                 <img

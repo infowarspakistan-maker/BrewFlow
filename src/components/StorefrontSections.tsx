@@ -109,18 +109,18 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
       className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 lg:py-4 flex flex-col justify-between select-none scroll-mt-20 overflow-hidden bg-transparent border-0"
     >
       {/* Single Unified Section Header Card with 10% Background Opacity */}
-      <div className="w-full bg-black/10 backdrop-blur-md rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] mb-4 sm:mb-6">
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-0 items-stretch">
+      <div className="w-full bg-transparent backdrop-blur-sm rounded-3xl overflow-hidden border border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] mb-4 sm:mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-10 gap-0 items-stretch">
           
           {/* Left Column (40% width): Section Title, Selected Product Brief Details, Description & Checklist */}
-          <div className="lg:col-span-4 p-5 sm:p-7 lg:p-8 space-y-4 text-left flex flex-col justify-between">
-            <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-3">
-              <div className="space-y-1">
-                <span className="text-[11px] sm:text-xs uppercase tracking-widest text-[#d59a63] font-semibold flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#d59a63]" />
+          <div className="md:col-span-4 p-3.5 sm:p-5 lg:p-6 space-y-2.5 sm:space-y-3 text-left flex flex-col justify-between">
+            <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-2.5">
+              <div className="space-y-0.5">
+                <span className="hidden md:flex text-[10px] sm:text-[11px] uppercase tracking-widest text-[#d59a63] font-semibold items-center gap-1.5">
+                  <Sparkles className="w-3 h-3 text-[#d59a63]" />
                   <span>{subtitle} · 9 Curated Selections</span>
                 </span>
-                <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#faede1] tracking-tight drop-shadow-md">
+                <h2 className="font-serif text-lg sm:text-2xl md:text-3xl font-bold text-[#faede1] tracking-tight drop-shadow-md">
                   {title}
                 </h2>
               </div>
@@ -131,51 +131,51 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
                   playChime('click');
                 }}
                 title="Open Order Bag"
-                className="w-9 h-9 rounded-full bg-[#d59a63] hover:bg-[#e4ad6f] text-[#120b08] flex items-center justify-center shadow-[0_10px_25px_rgba(213,154,99,0.4)] transition-transform hover:scale-105 active:scale-95 shrink-0"
+                className="w-8 h-8 rounded-full bg-[#d59a63] hover:bg-[#e4ad6f] text-[#120b08] flex items-center justify-center shadow-[0_10px_25px_rgba(213,154,99,0.4)] transition-transform hover:scale-105 active:scale-95 shrink-0"
               >
-                <ArrowRight className="w-4.5 h-4.5 stroke-[2.2]" />
+                <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
               </button>
             </div>
 
             {/* Selected Product Brief Details Box (Directly Under Section Title) */}
             {activeItem && (
-              <div className="p-3.5 sm:p-4 rounded-2xl bg-black/30 border border-white/10 space-y-1.5 shadow-inner">
+              <div className="p-2.5 sm:p-3 rounded-2xl bg-transparent border border-white/5 space-y-1 shadow-sm">
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-[10px] font-mono text-[#d59a63] font-bold uppercase tracking-wider">
                     // Spotlight #{String(activeIndex + 1).padStart(2, '0')} · {activeItem.category.replace('_', ' ').toUpperCase()}
                   </span>
-                  <span className="font-mono text-sm font-bold text-white">
+                  <span className="font-mono text-xs sm:text-sm font-bold text-white">
                     {brandingProfile.currency}{activeItem.price.toFixed(2)}
                   </span>
                 </div>
 
-                <h4 className="font-serif font-bold text-base sm:text-lg text-white">
+                <h4 className="font-serif font-bold text-sm sm:text-base text-white">
                   {activeItem.name}
                 </h4>
 
-                <p className="text-xs text-[#baa293] font-light line-clamp-2">
+                <p className="text-[11px] sm:text-xs text-[#baa293] font-light line-clamp-1">
                   {activeItem.description}
                 </p>
               </div>
             )}
 
-            <p className="text-xs sm:text-sm text-[#baa293] tracking-wide font-light leading-relaxed">
+            <p className="text-[11px] sm:text-xs text-[#baa293] tracking-wide font-light leading-relaxed line-clamp-2">
               {description}
             </p>
 
-            <div className="grid grid-cols-2 gap-2 text-[11px] text-[#cfb7a5]">
+            <div className="grid grid-cols-2 gap-1.5 text-[10px] sm:text-[11px] text-[#cfb7a5]">
               {checklist.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-1.5">
-                  <Check className="w-3.5 h-3.5 text-[#d59a63] shrink-0" />
+                <div key={idx} className="flex items-center gap-1">
+                  <Check className="w-3 h-3 text-[#d59a63] shrink-0" />
                   <span>{item}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right Column (60% width): Full Height Product Photo (No top, bottom, or left padding) */}
+          {/* Right Column (60% width): Full Height Product Photo (Reduced height by 15%) */}
           {activeItem && (
-            <div className="lg:col-span-6 relative w-full min-h-[300px] sm:min-h-[360px] lg:h-full p-0 overflow-hidden bg-black/40 group">
+            <div className="lg:col-span-6 relative w-full min-h-[255px] sm:min-h-[305px] lg:h-full p-0 overflow-hidden bg-transparent group">
               <ProgressiveImage
                 src={activeItem.image}
                 alt={activeItem.name}
@@ -239,7 +239,7 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
 
       {/* 3D Cylindrical Curved Perspective Scroller (9 Products) matching reference image */}
       <div 
-        className="relative w-full py-4 perspective-[1600px] overflow-visible cursor-grab active:cursor-grabbing"
+        className="relative w-full py-2 sm:py-4 perspective-[1600px] overflow-visible cursor-grab active:cursor-grabbing"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onMouseDown={handleMouseDown}
@@ -249,7 +249,7 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
         <div className="absolute top-1/2 left-0 sm:left-2 -translate-y-1/2 z-40 pointer-events-auto">
           <button
             onClick={(e) => { e.stopPropagation(); prevSlide(); }}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/10 text-[#faede1] flex items-center justify-center shadow-[0_15px_35px_rgba(0,0,0,0.9)] transition-all hover:scale-110 active:scale-95"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-sm border border-white/5 text-[#faede1] flex items-center justify-center shadow-sm transition-all hover:scale-110 active:scale-95"
             aria-label="Previous product"
           >
             <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -259,15 +259,15 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
         <div className="absolute top-1/2 right-0 sm:right-2 -translate-y-1/2 z-40 pointer-events-auto">
           <button
             onClick={(e) => { e.stopPropagation(); nextSlide(); }}
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-black/70 hover:bg-black/90 backdrop-blur-md border border-white/10 text-[#faede1] flex items-center justify-center shadow-[0_15px_35px_rgba(0,0,0,0.9)] transition-all hover:scale-110 active:scale-95"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-sm border border-white/5 text-[#faede1] flex items-center justify-center shadow-sm transition-all hover:scale-110 active:scale-95"
             aria-label="Next product"
           >
             <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
 
-        {/* 3D Cylindrical Panoramic Arc Track (Scaled 25% for sleeker presence) */}
-        <div className="relative w-full h-[285px] sm:h-[315px] flex items-center justify-center transform-style-preserve-3d">
+        {/* 3D Cylindrical Panoramic Arc Track (Ultra-slim on mobile) */}
+        <div className="relative w-full h-[220px] sm:h-[315px] flex items-center justify-center transform-style-preserve-3d">
           {items.map((item, index) => {
             const isJustAdded = justAddedId === item.id;
             const diff = index - activeIndex;
@@ -319,11 +319,11 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
                     ? 'transform 0.08s ease-out, opacity 0.3s ease, box-shadow 0.3s ease' 
                     : 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease, box-shadow 0.4s ease',
                 }}
-                className={`absolute w-48 sm:w-56 aspect-[3/4] sm:aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.9)] border ${
+                className={`absolute w-36 sm:w-56 aspect-[3/4] sm:aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.9)] border ${
                   isCurrentActive 
                     ? 'border-[#d59a63] ring-2 ring-[#d59a63]/50 shadow-[0_25px_60px_rgba(213,154,99,0.35)]' 
                     : 'border-white/10 hover:border-white/30'
-                } bg-[#140c08]/90 backdrop-blur-md flex flex-col justify-between transform-gpu will-change-transform`}
+                } bg-transparent flex flex-col justify-between transform-gpu will-change-transform`}
               >
                 {/* Full-bleed Product Image */}
                 <div className="absolute inset-0 w-full h-full">
@@ -422,7 +422,7 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
 
       {/* Lifted Value Checklist & Quick Order Now Banner */}
       <div className="pt-6 max-w-5xl mx-auto w-full">
-        <div className="bg-black/50 backdrop-blur-md rounded-3xl p-5 sm:p-6 shadow-[0_25px_60px_rgba(0,0,0,0.85)] border border-white/5 flex flex-col md:flex-row items-center justify-between gap-5 text-[#cfb7a5]">
+        <div className="bg-transparent backdrop-blur-sm rounded-3xl p-5 sm:p-6 shadow-[0_25px_60px_rgba(0,0,0,0.5)] border border-white/5 flex flex-col md:flex-row items-center justify-between gap-5 text-[#cfb7a5]">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 text-xs font-light">
             {checklist.map((item, idx) => (
               <div key={idx} className="flex items-center gap-1.5">

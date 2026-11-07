@@ -2,6 +2,7 @@ import React from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import { Header } from './components/Header';
 import { StorefrontHero } from './components/StorefrontHero';
+import { FeaturedDeals } from './components/FeaturedDeals';
 import { StorefrontSections } from './components/StorefrontSections';
 import { StorefrontFooter } from './components/StorefrontFooter';
 import { ProductCustomizerModal } from './components/ProductCustomizerModal';
@@ -17,6 +18,7 @@ import { ProductDetailModal } from './components/ProductDetailModal';
 import { BackgroundScrollAnimation } from './components/BackgroundScrollAnimation';
 import { QuickOrderToastStack } from './components/QuickOrderToast';
 import { MobileStickyFooter } from './components/MobileStickyFooter';
+import { MobileAppView } from './components/MobileAppView';
 
 const MainContent: React.FC = () => {
   const { activeView, isAdminLoggedIn } = useApp();
@@ -31,10 +33,15 @@ const MainContent: React.FC = () => {
       <main className="flex-1 relative z-10">
         {activeView === 'storefront' && (
           <div className="relative z-10 flex flex-col min-h-screen">
-            <StorefrontHero />
-            <StorefrontSections />
-            <StorefrontFooter />
-            <MobileStickyFooter />
+            <div className="block md:hidden">
+              <MobileAppView />
+            </div>
+            <div className="hidden md:block">
+              <StorefrontHero />
+              <FeaturedDeals />
+              <StorefrontSections />
+              <StorefrontFooter />
+            </div>
           </div>
         )}
 
