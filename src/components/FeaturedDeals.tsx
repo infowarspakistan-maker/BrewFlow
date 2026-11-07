@@ -20,8 +20,8 @@ export const FeaturedDeals: React.FC = () => {
           <ProgressiveImage
             src={deal.image}
             alt={deal.name}
-            containerClassName="w-full aspect-square"
-            imageClassName="object-cover"
+            containerClassName="w-full aspect-video"
+            imageClassName="object-contain"
           />
           <div className="absolute inset-0 bg-black/40 flex flex-col justify-end p-3">
             <h4 className="text-white font-serif text-sm font-bold truncate">{deal.name}</h4>

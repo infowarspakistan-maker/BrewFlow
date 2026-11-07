@@ -15,7 +15,7 @@ export const BackgroundScrollAnimation: React.FC = () => {
   // Pad index to 3 digits: e.g. 1 -> 001, 45 -> 045, 300 -> 300
   const getFrameUrl = (index: number) => {
     const padded = String(index).padStart(3, '0');
-    return `/frames/ezgif-frame-${padded}.jpg`;
+    return `/ezgif-frame-${padded}.jpg`;
   };
 
   // Draw frame with object-fit: cover scaling directly without clearRect flashes
@@ -221,7 +221,7 @@ export const BackgroundScrollAnimation: React.FC = () => {
 
   return (
     <div 
-      className="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden transform-gpu" 
+      className="fixed inset-0 w-full h-full z-0 overflow-hidden transform-gpu" 
       aria-hidden="true"
     >
       {/* High performance hardware-accelerated canvas */}
