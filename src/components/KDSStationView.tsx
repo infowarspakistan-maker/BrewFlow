@@ -34,9 +34,9 @@ export const KDSStationView: React.FC<KDSStationViewProps> = ({ stationMode }) =
   const [filterStatus, setFilterStatus] = useState<'active' | 'ready' | 'all'>('active');
   const [now, setNow] = useState(Date.now());
 
-  // Keep live elapsed timer ticking every 5 seconds
+  // Keep live elapsed timer ticking every 1 second
   useEffect(() => {
-    const timer = setInterval(() => setNow(Date.now()), 5000);
+    const timer = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -69,9 +69,9 @@ export const KDSStationView: React.FC<KDSStationViewProps> = ({ stationMode }) =
   };
 
   const getAgeColor = (totalSecs: number) => {
-    if (totalSecs > 360) return 'text-rose-400 bg-rose-950/60 border-rose-800'; // > 6 min
-    if (totalSecs > 180) return 'text-amber-300 bg-amber-950/60 border-amber-800'; // > 3 min
-    return 'text-emerald-400 bg-emerald-950/60 border-emerald-800'; // normal
+    if (totalSecs > 480) return 'text-rose-500 bg-rose-950/40 border-rose-900/60'; // > 8 min: Red
+    if (totalSecs > 240) return 'text-amber-400 bg-amber-950/40 border-amber-900/60'; // > 4 min: Orange
+    return 'text-emerald-400 bg-emerald-950/40 border-emerald-900/60'; // normal: Green
   };
 
   const handleToggleItemStatus = (orderId: string, item: OrderItem) => {

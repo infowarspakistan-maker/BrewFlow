@@ -10,6 +10,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { OrderTrackingDisplay } from './OrderTrackingDisplay';
 
 export const OrderConfirmationModal: React.FC = () => {
   const { 
@@ -81,127 +82,16 @@ export const OrderConfirmationModal: React.FC = () => {
         </div>
 
         {/* Live Station Routing Progress */}
-        <div className="p-5 space-y-5 overflow-y-auto max-h-[65vh] text-xs">
-          
-          <div className="p-3 rounded-xl bg-[#22150e] border border-[#382216] flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-[#d49a5b]" />
-              <span className="font-medium text-[#f4ece4]">
-                Est. Kitchen Prep: <strong className="text-[#d49a5b]">3–5 mins</strong>
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-[#8e7667]">Overall Status:</span>
-              {getStatusBadge(liveOrder.overallStatus)}
-            </div>
-          </div>
-
-          {/* Barista Station Items */}
-          {baristaItems.length > 0 && (
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-xs font-semibold text-[#d49a5b] pb-1 border-b border-[#2d1b11]">
-                <div className="flex items-center gap-1.5">
-                  <Coffee className="w-3.5 h-3.5" />
-                  <span>Barista Station (Beverages)</span>
-                </div>
-                <button
-                  onClick={() => {
-                    setRecentConfirmedOrder(null);
-                    setActiveView('kds_barista');
-                    playChime('click');
-                  }}
-                  className="text-[11px] text-[#bda18e] hover:text-[#faede1] flex items-center gap-1 hover:underline"
-                >
-                  <span>View Barista Screen</span>
-                  <ChevronRight className="w-3 h-3" />
-                </button>
-              </div>
-
-              <div className="space-y-1.5">
-                {baristaItems.map((item) => (
-                  <div
-                    key={item.cartItemId}
-                    className="p-2.5 rounded-lg bg-[#1f130b] border border-[#2e1c12] flex items-center justify-between"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-9 h-9 rounded object-cover"
-                      />
-                      <div>
-                        <div className="font-medium text-[#faede1]">
-                          {item.quantity}x {item.name}
-                        </div>
-                        <div className="text-[10px] text-[#8e7667]">
-                          {item.customization.milk || 'Whole Milk'} · {item.customization.iceLevel || 'Hot'}
-                        </div>
-                      </div>
-                    </div>
-                    {getStatusBadge(item.itemStatus)}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Bakery / Warming Station Items */}
-          {bakeryItems.length > 0 && (
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-xs font-semibold text-[#e2843d] pb-1 border-b border-[#2d1b11]">
-                <div className="flex items-center gap-1.5">
-                  <Flame className="w-3.5 h-3.5" />
-                  <span>Bakery &amp; Warming Station (Pastries)</span>
-                </div>
-                <button
-                  onClick={() => {
-                    setRecentConfirmedOrder(null);
-                    setActiveView('kds_bakery');
-                    playChime('click');
-                  }}
-                  className="text-[11px] text-[#bda18e] hover:text-[#faede1] flex items-center gap-1 hover:underline"
-                >
-                  <span>View Bakery Screen</span>
-                  <ChevronRight className="w-3 h-3" />
-                </button>
-              </div>
-
-              <div className="space-y-1.5">
-                {bakeryItems.map((item) => (
-                  <div
-                    key={item.cartItemId}
-                    className="p-2.5 rounded-lg bg-[#1f130b] border border-[#2e1c12] flex items-center justify-between"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-9 h-9 rounded object-cover"
-                      />
-                      <div>
-                        <div className="font-medium text-[#faede1]">
-                          {item.quantity}x {item.name}
-                        </div>
-                        <div className="text-[10px] text-[#8e7667]">
-                          {item.customization.warming ? '🔥 Heated 45s' : 'Ambient temp'} · {item.customization.servingStyle || 'For Here'}
-                        </div>
-                      </div>
-                    </div>
-                    {getStatusBadge(item.itemStatus)}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+        <div className="p-5 overflow-y-auto max-h-[65vh]">
+          <OrderTrackingDisplay order={liveOrder} />
 
           {/* Receipt Total */}
-          <div className="pt-2 border-t border-[#29170e] flex items-center justify-between text-xs text-[#a98f7e]">
+          <div className="pt-4 border-t border-[#29170e] flex items-center justify-between text-xs text-[#a98f7e]">
             <span>Paid via {liveOrder.paymentMethod?.replace('_', ' ').toUpperCase()}</span>
             <span className="font-mono text-sm font-bold text-[#faede1]">
               Total: ${liveOrder.total.toFixed(2)}
             </span>
           </div>
-
         </div>
 
         {/* Modal Action Footer */}

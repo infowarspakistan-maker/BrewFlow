@@ -28,6 +28,7 @@ export interface MenuItem {
   category: ProductCategory;
   station: StationType;
   image: string;
+  images?: string[]; // Added for carousel
   tag?: string;
   calories?: string;
   pairings: string[]; // IDs of items to suggest in "The Perfect Match"

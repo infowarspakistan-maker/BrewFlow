@@ -11,6 +11,7 @@ import {
   Coffee,
   Sparkles
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useApp } from '../context/AppContext';
 import { MenuItem, ProductCategory } from '../types';
 import { ProgressiveImage } from './ProgressiveImage';
@@ -181,6 +182,7 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
                 alt={activeItem.name}
                 containerClassName="absolute inset-0 w-full h-full"
                 imageClassName="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                style={{ height: '380.476px', width: '714.281px' }}
               />
 
               {/* Dark gradient vignette overlay */}
@@ -292,14 +294,15 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
             const isCurrentActive = diff === 0;
 
             return (
-              <div
+            <motion.div
                 key={item.id}
+                whileHover={{ scale: 1.05, z: 20 }}
                 onMouseMove={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
                   const x = e.clientX - rect.left - rect.width / 2;
                   const y = e.clientY - rect.top - rect.height / 2;
-                  const rx = -(y / (rect.height / 2)) * 12; // 12 deg tilt
-                  const ry = (x / (rect.width / 2)) * 12;
+                  const rx = -(y / (rect.height / 2)) * 10;
+                  const ry = (x / (rect.width / 2)) * 10;
                   setCardTilt({ id: item.id, rx, ry });
                 }}
                 onMouseLeave={() => setCardTilt(null)}
@@ -316,8 +319,8 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
                   zIndex,
                   opacity,
                   transition: isTilted 
-                    ? 'transform 0.08s ease-out, opacity 0.3s ease, box-shadow 0.3s ease' 
-                    : 'transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease, box-shadow 0.4s ease',
+                    ? 'transform 0.1s ease-out, opacity 0.3s ease, box-shadow 0.3s ease' 
+                    : 'transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease, box-shadow 0.4s ease',
                 }}
                 className={`absolute w-36 sm:w-56 aspect-[3/4] sm:aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer shadow-[0_20px_50px_rgba(0,0,0,0.9)] border ${
                   isCurrentActive 
@@ -414,7 +417,7 @@ export const CurvedProductScrollerSection: React.FC<SectionProps> = ({
                   </div>
                 </div>
 
-              </div>
+              </motion.div>
             );
           })}
         </div>

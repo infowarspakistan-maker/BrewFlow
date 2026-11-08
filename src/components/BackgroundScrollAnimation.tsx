@@ -15,7 +15,7 @@ export const BackgroundScrollAnimation: React.FC = () => {
   // Pad index to 3 digits: e.g. 1 -> 001, 45 -> 045, 300 -> 300
   const getFrameUrl = (index: number) => {
     const padded = String(index).padStart(3, '0');
-    return `/ezgif-frame-${padded}.jpg`;
+    return `/assets/animation/ezgif-frame-${padded}.jpg`;
   };
 
   // Draw frame with object-fit: cover scaling directly without clearRect flashes
@@ -148,22 +148,7 @@ export const BackgroundScrollAnimation: React.FC = () => {
       loadSingleFrame(i);
     }
 
-    // 4. Progressively background-load remaining frames in fast staged chunks
-    let currentBatchStart = 41;
-    const batchSize = 30;
-    const intervalTimer = setInterval(() => {
-      if (currentBatchStart > TOTAL_FRAMES) {
-        clearInterval(intervalTimer);
-        return;
-      }
-      for (let i = currentBatchStart; i < Math.min(TOTAL_FRAMES + 1, currentBatchStart + batchSize); i++) {
-        loadSingleFrame(i);
-      }
-      currentBatchStart += batchSize;
-    }, 60);
-
     return () => {
-      clearInterval(intervalTimer);
       window.removeEventListener('resize', resizeCanvas);
     };
   }, [resizeCanvas, loadSingleFrame]);

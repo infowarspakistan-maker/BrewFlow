@@ -5,6 +5,7 @@ import { StorefrontHero } from './components/StorefrontHero';
 import { FeaturedDeals } from './components/FeaturedDeals';
 import { StorefrontSections } from './components/StorefrontSections';
 import { StorefrontFooter } from './components/StorefrontFooter';
+import { StorefrontOrderTracker } from './components/StorefrontOrderTracker';
 import { ProductCustomizerModal } from './components/ProductCustomizerModal';
 import { PerfectMatchModal } from './components/PerfectMatchModal';
 import { CartDrawer } from './components/CartDrawer';
@@ -39,6 +40,7 @@ const MainContent: React.FC = () => {
             <div className="hidden md:block">
               <StorefrontHero />
               <FeaturedDeals />
+              <StorefrontOrderTracker />
               <StorefrontSections />
               <StorefrontFooter />
             </div>

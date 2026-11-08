@@ -5,13 +5,14 @@ interface ProgressiveImageProps {
   alt: string;
   containerClassName?: string;
   imageClassName?: string;
+  style?: React.CSSProperties;
 }
 
-export const ProgressiveImage: React.FC<ProgressiveImageProps> = ({ src, alt, containerClassName, imageClassName }) => {
+export const ProgressiveImage: React.FC<ProgressiveImageProps> = ({ src, alt, containerClassName, imageClassName, style }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className={`relative overflow-hidden ${containerClassName}`}>
+    <div className={`relative overflow-hidden ${containerClassName}`} style={style}>
       <img
         src={src}
         alt={alt}

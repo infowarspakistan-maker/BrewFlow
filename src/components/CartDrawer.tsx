@@ -88,8 +88,10 @@ export const CartDrawer: React.FC = () => {
       <div className="absolute inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10">
         <div 
           onClick={(e) => e.stopPropagation()}
-          className="w-screen max-w-md bg-[#130b07] border-l border-white/10 shadow-[0_25px_80px_rgba(0,0,0,0.95)] flex flex-col text-[#faede1] transition-all duration-300 ease-out animate-in slide-in-from-right"
+          className="w-screen max-w-md bg-[#0a0604]/90 backdrop-blur-2xl border-l border-white/10 shadow-[0_25px_80px_rgba(0,0,0,0.95)] flex flex-col text-[#faede1] transition-all duration-300 ease-out animate-in slide-in-from-right relative"
         >
+          {/* Subtle radial glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(213,154,99,0.05),transparent_70%)] pointer-events-none" />
           
           {/* 1. Header */}
           <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-black/40">

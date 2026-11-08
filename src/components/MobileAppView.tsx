@@ -12,6 +12,7 @@ import { useApp } from '../context/AppContext';
 import { ProgressiveImage } from './ProgressiveImage';
 import { FeaturedDeals } from './FeaturedDeals';
 import { MobileStickyFooter } from './MobileStickyFooter';
+import { StorefrontOrderTracker } from './StorefrontOrderTracker';
 import { MenuItem } from '../types';
 
 export const MobileAppView: React.FC = () => {
@@ -201,6 +202,8 @@ export const MobileAppView: React.FC = () => {
         <h3 className="font-serif font-bold text-sm text-white mb-2.5">Featured Deals</h3>
         <FeaturedDeals />
       </div>
+
+      <StorefrontOrderTracker />
 
       {/* Categories: Small circular images, 1 line */}
       <div className="mb-5">
